@@ -102,11 +102,11 @@ void Inter_CAN0(void)
         Rx[0] = CAN_Rx(NoInt); // Recepci�n de datos
         Leds();
     }
-    if (NoInt == 0x3)
-    {
-        Rx[1] = CAN_Rx(NoInt); // Recepci�nn de datos
-        Leds();
-    }
+    // if (NoInt == 0x3)
+    // {
+    //     Rx[1] = CAN_Rx(NoInt); // Recepci�nn de datos
+    //     Leds();
+    // }
 
     //    CAN_Error();
 }
@@ -177,11 +177,11 @@ void main(void)
     /*****************************************************/
 
     // Configuraci�n para Recepci�n Sencilla Sin Mascara Localidad #1
-    //  CAN_Memoria_Arb(0xAA,false,0x1);                        //ID, TxRx, Localidad
-    //  CAN_Memoria_CtrlMsk(0xFFF,2,false,true,false,0x1);      //Mask, DLC, TxIE, RxIE, Remote, Localidad
+    CAN_Memoria_Arb(0xFE,false,0x1);                        //ID, TxRx, Localidad
+    CAN_Memoria_CtrlMsk(0xFFF,5,false,true,false,0x1);      //Mask, DLC, TxIE, RxIE, Remote, Localidad
 
     // Configuraci�n para la Transmisi�n Sencilla Localidad #2
-    CAN_Memoria_Arb(0x2A, true, 0x2);                        // ID, TxRx, Localidad
+    CAN_Memoria_Arb(0x5A, true, 0x2);                        // ID, TxRx, Localidad
     CAN_Memoria_CtrlMsk(0xFFF, 4, false, false, false, 0x2); // Mask, DLC, TxIE, RxIE, Remote, Localidad
     CAN_Memoria_Dato(0x6C756152, 0x2);                             // Carga el Campo de Datos de la Transmisi�n Sencilla Localidad #2
 
